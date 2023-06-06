@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "388229068653",
+    "firebase_url": "https://nearestreataurants-default-rtdb.firebaseio.com",
+    "project_id": "nearestreataurants",
+    "storage_bucket": "nearestreataurants.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388229068653:android:614846dc51289fd49f0c64",
+        "android_client_info": {
+          "package_name": "com.nearbyrestaurants"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388229068653-m78k7uq7pkkjm4ecavkhk706u079qfjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp_BSRLzoBzPnUofhUx34ay7WmRZL77us"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388229068653-m78k7uq7pkkjm4ecavkhk706u079qfjb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "388229068653-ijt06hge7for2417kgrj4ujmvfjnpf7k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

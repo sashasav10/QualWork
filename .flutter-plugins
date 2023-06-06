@@ -1,0 +1,23 @@
+# This is a generated file; do not edit or check into version control.
+cloud_firestore=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/cloud_firestore-4.6.0/
+cloud_firestore_web=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/cloud_firestore_web-3.4.3/
+firebase_auth=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/firebase_auth-4.5.0/
+firebase_auth_web=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/firebase_auth_web-5.4.0/
+firebase_core=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/firebase_core-2.11.0/
+firebase_core_web=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/firebase_core_web-2.4.0/
+firebase_crashlytics=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/firebase_crashlytics-3.2.0/
+flutter_plugin_android_lifecycle=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.14/
+geolocator=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/geolocator-8.2.1/
+geolocator_android=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/geolocator_android-3.2.1/
+geolocator_apple=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/geolocator_apple-2.2.5/
+geolocator_web=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/geolocator_web-2.1.6/
+geolocator_windows=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/geolocator_windows-0.1.1/
+google_maps_flutter=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/google_maps_flutter-2.2.6/
+google_maps_flutter_android=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.4.13/
+google_maps_flutter_ios=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.2.1/
+path_provider=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/path_provider-2.0.15/
+path_provider_android=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/path_provider_android-2.0.27/
+path_provider_foundation=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.3/
+path_provider_linux=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.10/
+path_provider_windows=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.6/
+sqflite=/Users/oleksandrsaveliev/.pub-cache/hosted/pub.dev/sqflite-2.2.8+2/
