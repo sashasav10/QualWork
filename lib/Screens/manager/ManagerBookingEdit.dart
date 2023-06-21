@@ -5,6 +5,7 @@ import 'package:my_app/constants/CommonMethods.dart';
 import 'package:my_app/constants/CustomColor.dart';
 import 'package:my_app/custom%20widgets/CustomText.dart';
 import 'package:my_app/custom%20widgets/LoadingWidget.dart';
+import 'package:intl/intl.dart';
 
 class ManagerBookingEdit extends StatefulWidget {
   const ManagerBookingEdit({Key? key}) : super(key: key);
@@ -43,7 +44,8 @@ class _ManagerBookingEditState extends State<ManagerBookingEdit> {
       if (mapValue['date'] != null) {
         date = mapValue['date'];
       }
-      selectedDate = DateTime.parse(date);
+      DateFormat inputFormat = DateFormat('dd.MM.yyyy');
+      selectedDate = inputFormat.parse(date);
       if (mapValue['time'] != null) {
         time = mapValue['time'];
       }
@@ -59,6 +61,7 @@ class _ManagerBookingEditState extends State<ManagerBookingEdit> {
   // Method for select date and open the date picker
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
+        locale: const Locale('uk', 'UA'),
         context: context,
         initialDate: selectedDate,
         firstDate: DateTime(selectedDate.year, selectedDate.month),
@@ -66,6 +69,7 @@ class _ManagerBookingEditState extends State<ManagerBookingEdit> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        date = DateFormat("dd.MM.yyyy").format(picked);
       });
     }
   }
@@ -153,7 +157,7 @@ class _ManagerBookingEditState extends State<ManagerBookingEdit> {
                       BorderRadius.circular(AppConstant.radius7),
                     ),
                     child: CustomText(
-                      title: "${selectedDate.toLocal()}".split(' ')[0],
+                      title: date.split(' ')[0],
                       textAlign: TextAlign.start,
                     ),
                   ),
@@ -283,7 +287,7 @@ class _ManagerBookingEditState extends State<ManagerBookingEdit> {
         'booking')
         .doc(uid)
         .update({
-      'date': "${selectedDate.toLocal()}".split(' ')[0],
+      'date': date.split(' ')[0],
       'time': time,
       'noOfPeoples': _noOfPeoplesController.text.trim(),
     });

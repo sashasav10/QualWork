@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:my_app/Screens/manager/ManagerAddRestaurant.dart';
 import 'package:my_app/constants/Routes.dart';
 import 'package:my_app/screens/BookTable.dart';
 import 'package:my_app/screens/CustomerBookings.dart';
@@ -17,6 +19,8 @@ import 'package:my_app/screens/Signup.dart';
 import 'package:my_app/screens/manager/ManagerBookingEdit.dart';
 import 'package:my_app/screens/manager/ManagerHomepage.dart';
 import 'package:dcdg/dcdg.dart';
+
+import 'Screens/manager/ManagerRestaurant.dart';
 
 class PostHttpOverrides extends HttpOverrides {
   @override
@@ -47,6 +51,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Restaurants',
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('uk', 'UA'), // Ukrainian, Ukraine
+      ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -66,6 +78,8 @@ class MyApp extends StatelessWidget {
         Routes.managerHomepage: (ctx) => const ManagerHomepage(),
         Routes.customerBooking: (ctx) => const CustomerBookings(),
         Routes.managerBookingEdit: (ctx) => const ManagerBookingEdit(),
+        Routes.managerRestaurant: (ctx) => const ManagerRestaurant(),
+        Routes.managerAddRestaurant: (ctx) => const ManagerAddRestaurant(),
         Routes.filtersScreen: (ctx) => const FiltersScreen(),
       },
     );

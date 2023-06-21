@@ -17,7 +17,7 @@ class _SplashState extends State<Splash> {
     if (_init) {
       // Delay for 2 second
 
-      Future.delayed(const Duration(seconds: 2), () async {
+      Future.delayed(const Duration(seconds: 1), () async {
         // if method return 1 the app goes to manager homepage screen
         // if method return 2 the app goes to customer homepage
         // otherwise the signIn screen will show
@@ -38,19 +38,41 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          color: Colors.white,
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.blue, Colors.white],
+          ),
         ),
-        child: const Center(
-          child: Text(
-            'Nearby Restaurants',
-            style: TextStyle(
-              color: Colors.black,
-              letterSpacing: 0.5,
-              fontSize: 20,
-            ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(
+                Icons.restaurant,
+                size: 100.0,
+                color: Colors.white,
+              ),
+              SizedBox(height: 16.0),
+              Text(
+                'Nearby Restaurants',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                ),
+              ),
+              SizedBox(height: 16.0),
+              CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
+
+
 }

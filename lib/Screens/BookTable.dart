@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_app/constants/AppConstant.dart';
 import 'package:my_app/constants/AuthMethods.dart';
 import 'package:my_app/constants/CommonMethods.dart';
 import 'package:my_app/custom%20widgets/CustomText.dart';
 import 'package:my_app/custom%20widgets/LoadingWidget.dart';
+import 'package:intl/intl.dart';
 
 class BookTable extends StatefulWidget {
   const BookTable({Key? key}) : super(key: key);
@@ -19,6 +21,7 @@ class _BookTableState extends State<BookTable> {
   final TextEditingController _noOfPeoplesController = TextEditingController();
 
   bool _init = true;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -32,46 +35,60 @@ class _BookTableState extends State<BookTable> {
     }
   }
 
+  final sDateFormate = "dd.MM.yyyy";
   DateTime selectedDate = DateTime.now();
+  String date = DateFormat("dd.MM.yyyy").format(DateTime.now());
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
+        locale: const Locale('uk', 'UA'),
         context: context,
         initialDate: selectedDate,
-        firstDate: DateTime(selectedDate.year, selectedDate.month),
-        lastDate: DateTime(2101));
+        firstDate: selectedDate,
+        lastDate: DateTime.now().add(const Duration(days: 90)));
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        date = DateFormat(sDateFormate).format(picked);
       });
     }
   }
 
-  String time = '';
-  Future<TimeOfDay?> getTime({
+  String time = TimeOfDay.now().toString().substring(
+      TimeOfDay.now().toString().indexOf('(') + 1,
+      TimeOfDay.now().toString().indexOf(')'));
+
+  Future<TimeOfDay> getTime({
     required BuildContext context,
     String? title,
     TimeOfDay? initialTime,
     String? cancelText,
     String? confirmText,
   }) async {
-    TimeOfDay? time = await showTimePicker(
+    TimeOfDay? selectedTime = initialTime ?? TimeOfDay.now();
+
+    TimeOfDay? newTime = await showTimePicker(
       initialEntryMode: TimePickerEntryMode.dial,
       context: context,
-      initialTime: initialTime ?? TimeOfDay.now(),
+      initialTime: selectedTime,
       cancelText: cancelText ?? "Cancel",
       confirmText: confirmText ?? "Save",
       helpText: title ?? "Select time",
       builder: (context, Widget? child) {
         return MediaQuery(
-          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
           child: child!,
         );
       },
     );
 
-    return time;
+    if (newTime != null) {
+      selectedTime = newTime;
+    }
+
+    return selectedTime!;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +148,7 @@ class _BookTableState extends State<BookTable> {
                             BorderRadius.circular(AppConstant.radius7),
                       ),
                       child: CustomText(
-                        title: "${selectedDate.toLocal()}".split(' ')[0],
+                        title: date.split(' ')[0],
                         textAlign: TextAlign.start,
                       ),
                     ),
@@ -204,8 +221,13 @@ class _BookTableState extends State<BookTable> {
                         vertical: AppConstant.height10,
                         horizontal: AppConstant.width5,
                       ),
-                      hintText: 'No of Peoples',
+                      hintText: 'No of Peoples (up to 20)',
                     ),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'^[1-9]$|^1[0-9]$|^20$')),
+                    ],
                   ),
                 ),
                 SizedBox(height: AppConstant.height20),
@@ -250,7 +272,6 @@ class _BookTableState extends State<BookTable> {
     );
   }
 
-
   // Method for save the data of table booking by customer in firebase
   void _saveData() async {
     setState(() {
@@ -259,7 +280,7 @@ class _BookTableState extends State<BookTable> {
 
     String result = await AuthMethods().saveData(
         restaurantName: restaurantName,
-        date: "${selectedDate.toLocal()}".split(' ')[0],
+        date: date.split(' ')[0],
         time: time,
         noOfPeoples: _noOfPeoplesController.text.trim());
     if (result != 'success') {

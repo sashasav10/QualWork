@@ -10,5 +10,7 @@ class Routes {
   static String managerHomepage='/manager-homepage';
   static String customerBooking='/customer-booking';
   static String managerBookingEdit='/manager-booking-edit';
+  static String managerRestaurant='/manager-restaurant';
+  static String managerAddRestaurant='/manager-add-restaurant';
   static String filtersScreen='/filters-screen';
 }

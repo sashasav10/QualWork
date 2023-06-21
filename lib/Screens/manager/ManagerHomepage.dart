@@ -33,6 +33,12 @@ class _ManagerHomepageState extends State<ManagerHomepage> {
         actions: [
           IconButton(
             onPressed: () async {
+              Navigator.pushNamed(context, Routes.managerRestaurant);
+            },
+            icon: const Icon(Icons.house),
+          ),
+          IconButton(
+            onPressed: () async {
               await FirebaseAuth.instance.signOut();
               if (mounted) {
                 Navigator.pushNamedAndRemoveUntil(

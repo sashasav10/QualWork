@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_app/models/BookTableModel.dart';
 import 'package:my_app/models/UserModel.dart';
 
+import '../models/AddRestaurantModel.dart';
+
 // firebase methods
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -20,7 +22,6 @@ class AuthMethods {
       if (email!.isNotEmpty || name!.isNotEmpty || password!.isNotEmpty) {
         UserCredential user = await _auth.createUserWithEmailAndPassword(
             email: email, password: password!);
-        print(user.user!.uid);
 
         UserModel userModel = UserModel(
           email: email,
@@ -94,6 +95,39 @@ class AuthMethods {
         await _firestore.collection('booking').add(
               bookTableModel.toJson(),
             );
+        result = 'success';
+      }
+    } catch (err) {
+      result = 'Something went wrong';
+    }
+    return result;
+  }
+
+
+  // Method for adding restaurant in firebase database
+  Future<String> addRestaurantData({
+    required String address,
+    required List<String> cusines,
+    required List<String> image,
+    required String lat,
+    required String long,
+    required String name,
+  }) async {
+    String result = 'Some error occurred';
+    try {
+      if (address.isNotEmpty || lat.isNotEmpty || long.isNotEmpty|| name.isNotEmpty) {
+        AddRestaurantModel addRestaurantModel = AddRestaurantModel(
+            address:address,
+            cusines:cusines,
+            image:image,
+            lat:lat,
+            long:long,
+            name:name,
+        );
+
+        await _firestore.collection('restaurants').add(
+          addRestaurantModel.toJson(),
+        );
         result = 'success';
       }
     } catch (err) {
